@@ -1,19 +1,26 @@
+#!/usr/bin/python3
+input_string = input('>>> ').upper()
 
-try:
-    filename = input('The file in which the archive will be encrypted: ')
-    with open(filename, 'rb') as file1:
-        read1 = file1.read()
-except FileNotFoundError:
-    print('[x] File not found')
-    raise SystemExit
-try:
-    zip = input('Archive to encrypt to file: ')
-    with open(zip, 'rb') as file2:
-        read2 = file2.read()
-except FileNotFoundError:
-    print('[x] File not found')
-    raise SystemExit
-with open(filename, 'wb') as file3:
-    file3.write(read1)
-    file3.write(read2)
-print('[+] Successfully overwritten the file.')
+def choice():
+    userChoice = int(input('\n(1)Encrypt (2)Decrypt: '))
+    if userChoice == 1: encrypt(input_string)
+    elif userChoice == 2: decrypt(input_string)
+    else: raise SystemExit
+
+def encrypt(string):
+    for char in string:
+        print(chr(ord(char) + 3), end='')
+    print('')
+
+
+
+def decrypt(string):
+    for char in string:
+        print(chr(ord(char) - 3), end='')
+    print('')
+
+def main():
+    choice()
+
+if __name__ == '__main__':
+    main()
